@@ -22,6 +22,16 @@
 - [x] **10.** Озвучування (Web Speech API), імпорт/експорт (текст/JSON), пошук наборів, темна тема
 - [x] **11.** Інтервальне повторення (статистика по кожній картці)
 
-## Етап 4 — Бекенд (пізніше)
+## Деплой
 
-- [ ] **12.** Акаунти і синхронізація (Supabase / Firebase або міграція на Nuxt з server routes)
+- [x] Репозиторій: https://github.com/zhekaklimovych/quizlet-app
+- [x] GitHub Pages (автодеплой з тестами на кожен push у `main`): https://zhekaklimovych.github.io/quizlet-app/
+
+## Етап 4 — Nuxt і бекенд
+
+Обраний шлях: Nuxt + власні server routes + безкоштовна хмарна PostgreSQL.
+
+- [ ] **12a. Перенос на Nuxt** — той самий застосунок без бекенду: `pages/` замість Vue Router, `@pinia/nuxt`, Tailwind, Vitest; усі тести проходять; хостинг — Vercel
+- [ ] **12b. Сервер і база** — server routes (`server/api/*`), схема БД (users, study_sets, cards, card_progress), Drizzle ORM; локально SQLite, у продакшені Neon/Supabase Postgres; секрети в `.env`
+- [ ] **12c. Акаунти** — вхід (email або OAuth GitHub/Google), сесії, перевірка прав на сервері
+- [ ] **12d. Синхронізація** — стори працюють з API (async, оптимістичні оновлення), перенос наявних даних з localStorage в акаунт
