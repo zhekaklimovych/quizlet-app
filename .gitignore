@@ -42,3 +42,10 @@ __screenshots__/
 .env
 .env.*
 !.env.example
+
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache

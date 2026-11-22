@@ -1,54 +1,45 @@
-# quizlet-app
+# Quizlet App
 
-This template should help get you started developing with Vue 3 in Vite.
+Застосунок для вивчення карток (у стилі Quizlet): набори «термін — визначення» і кілька режимів навчання.
 
-## Recommended IDE Setup
+**Онлайн:** https://zhekaklimovych.github.io/quizlet-app/
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Можливості
 
-## Recommended Browser Setup
+- Набори карток: створення, редагування, імпорт тексту (з Excel / Google Sheets), експорт у текст і JSON
+- Режими: **Картки** (3D-перевертання), **Заучування** (вибір → письмова відповідь), **Підбір пар** (на час), **Тест**, **Повторення** (інтервальне повторення за алгоритмом SM-2)
+- Пошук, озвучування термінів (Web Speech API), світла / темна / системна тема
+- Дані зберігаються в браузері (localStorage); синхронізація між пристроями — у планах
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Стек
 
-## Type Support for `.vue` Imports in TS
+Nuxt 4 (Vue 3, Composition API) · TypeScript · Pinia · Tailwind CSS v4 · Vitest + @nuxt/test-utils
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Розробка
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install        # залежності (+ nuxt prepare)
+npm run dev        # сервер розробки: http://localhost:3000
+npm run test:unit  # тести (unit + сторінки в Nuxt-середовищі)
+npm run type-check # перевірка типів
+npm run lint       # oxlint + ESLint
+npm run generate   # статична збірка в .output/public
 ```
 
-### Compile and Hot-Reload for Development
+Деплой на GitHub Pages — автоматично на кожен push у `main` (див. `.github/workflows/deploy.yml`).
 
-```sh
-npm run dev
+## Структура
+
+```
+app/
+  pages/        маршрути (файлова маршрутизація Nuxt)
+  components/   компоненти інтерфейсу
+  composables/  логіка режимів навчання (useLearn, useMatch, useTest, useReview…)
+  stores/       Pinia: набори (sets) і прогрес повторення (progress)
+  utils/        чисті функції: перевірка відповідей, SM-2, імпорт/експорт, сховище з міграціями
+test/
+  unit/         тести логіки (без Nuxt)
+  nuxt/         тести сторінок у Nuxt-середовищі
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+План розвитку — у [PLAN.md](PLAN.md).

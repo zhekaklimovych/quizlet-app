@@ -16,14 +16,21 @@ export default defineConfigWithVueTs(
     files: ['**/*.{vue,ts,mts,tsx}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  globalIgnores(['**/dist/**', '**/coverage/**', '**/.nuxt/**', '**/.output/**']),
 
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
 
   {
     ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ['test/**/*'],
+  },
+
+  {
+    // Сторінки й кореневі файли Nuxt названі за маршрутом (index.vue, [id].vue) — це не імена компонентів
+    name: 'app/nuxt-route-files',
+    files: ['app/pages/**/*.vue', 'app/app.vue', 'app/error.vue'],
+    rules: { 'vue/multi-word-component-names': 'off' },
   },
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),

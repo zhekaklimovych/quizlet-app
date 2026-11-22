@@ -1,6 +1,6 @@
-# План роботи — Quizlet-like app (Vue 3)
+# План роботи — Quizlet-like app (Vue 3 → Nuxt 4)
 
-Стек: Vue 3 (Composition API) · Vite · TypeScript · Vue Router · Pinia · Tailwind CSS v4 · Vitest
+Стек: Nuxt 4 (Vue 3, Composition API) · TypeScript · Pinia · Tailwind CSS v4 · Vitest (кроки 1–11 зроблені на Vite + Vue Router)
 
 ## Етап 1 — MVP
 
@@ -31,7 +31,7 @@
 
 Обраний шлях: Nuxt + власні server routes + безкоштовна хмарна PostgreSQL.
 
-- [ ] **12a. Перенос на Nuxt** — той самий застосунок без бекенду: `pages/` замість Vue Router, `@pinia/nuxt`, Tailwind, Vitest; усі тести проходять; хостинг — Vercel
+- [x] **12a. Перенос на Nuxt** — той самий застосунок без бекенду: `app/pages/` замість Vue Router, `@pinia/nuxt`, Tailwind, Vitest + `@nuxt/test-utils`; SPA-режим (`ssr: false`); усі тести проходять; хостинг поки GitHub Pages (`nuxt generate`), на Vercel переїдемо разом із сервером у 12b
 - [ ] **12b. Сервер і база** — server routes (`server/api/*`), схема БД (users, study_sets, cards, card_progress), Drizzle ORM; локально SQLite, у продакшені Neon/Supabase Postgres; секрети в `.env`
 - [ ] **12c. Акаунти** — вхід (email або OAuth GitHub/Google), сесії, перевірка прав на сервері
 - [ ] **12d. Синхронізація** — стори працюють з API (async, оптимістичні оновлення), перенос наявних даних з localStorage в акаунт
